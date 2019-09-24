@@ -18,11 +18,15 @@ namespace Umbrella_Theaters_backend.Controllers
         private UmbrellaTheatersEntities db = new UmbrellaTheatersEntities();
 
         // GET: api/Auditoriums
-        public string GetAuditoriums()
+        public IQueryable<Auditoriums> GetAuditoriums()
         {
-            var json = new JavaScriptSerializer().Serialize(db.Auditoriums);
-            return json;
+            return db.Auditoriums;
         }
+        //public string GetAuditoriums()
+        //{
+        //    var json = new JavaScriptSerializer().Serialize(db.Auditoriums);
+        //    return json;
+        //}
 
         // GET: api/Auditoriums/5
         [ResponseType(typeof(Auditoriums))]
