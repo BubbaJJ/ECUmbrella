@@ -12,44 +12,44 @@ using Umbrella_Theaters_backend.Models;
 
 namespace Umbrella_Theaters_backend.Controllers
 {
-    public class AuditoriumsController : ApiController
+    public class CitiesController : ApiController
     {
         private UmbrellaTheatersEntities db = new UmbrellaTheatersEntities();
 
-        // GET: api/Auditoriums
-        public IQueryable<Auditoriums> GetAuditoriums()
+        // GET: api/Cities
+        public IQueryable<Cities> GetCities()
         {
-            return db.Auditoriums;
+            return db.Cities;
         }
 
-        // GET: api/Auditoriums/5
-        [ResponseType(typeof(Auditoriums))]
-        public string GetAuditoriums(int id)
+        // GET: api/Cities/5
+        [ResponseType(typeof(Cities))]
+        public IHttpActionResult GetCities(int id)
         {
-            Auditoriums auditoriums = db.Auditoriums.Find(id);
-            //if (auditoriums == null)
-            //{
-            //    return NotFound();
-            //}
+            Cities cities = db.Cities.Find(id);
+            if (cities == null)
+            {
+                return NotFound();
+            }
 
-            return auditoriums.AuditoriumName;
+            return Ok(cities);
         }
 
-        // PUT: api/Auditoriums/5
+        // PUT: api/Cities/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutAuditoriums(int id, Auditoriums auditoriums)
+        public IHttpActionResult PutCities(int id, Cities cities)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != auditoriums.AuditoriumId)
+            if (id != cities.CityId)
             {
                 return BadRequest();
             }
 
-            db.Entry(auditoriums).State = EntityState.Modified;
+            db.Entry(cities).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Umbrella_Theaters_backend.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AuditoriumsExists(id))
+                if (!CitiesExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace Umbrella_Theaters_backend.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Auditoriums
-        [ResponseType(typeof(Auditoriums))]
-        public IHttpActionResult PostAuditoriums(Auditoriums auditoriums)
+        // POST: api/Cities
+        [ResponseType(typeof(Cities))]
+        public IHttpActionResult PostCities(Cities cities)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Auditoriums.Add(auditoriums);
+            db.Cities.Add(cities);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = auditoriums.AuditoriumId }, auditoriums);
+            return CreatedAtRoute("DefaultApi", new { id = cities.CityId }, cities);
         }
 
-        // DELETE: api/Auditoriums/5
-        [ResponseType(typeof(Auditoriums))]
-        public IHttpActionResult DeleteAuditoriums(int id)
+        // DELETE: api/Cities/5
+        [ResponseType(typeof(Cities))]
+        public IHttpActionResult DeleteCities(int id)
         {
-            Auditoriums auditoriums = db.Auditoriums.Find(id);
-            if (auditoriums == null)
+            Cities cities = db.Cities.Find(id);
+            if (cities == null)
             {
                 return NotFound();
             }
 
-            db.Auditoriums.Remove(auditoriums);
+            db.Cities.Remove(cities);
             db.SaveChanges();
 
-            return Ok(auditoriums);
+            return Ok(cities);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace Umbrella_Theaters_backend.Controllers
             base.Dispose(disposing);
         }
 
-        private bool AuditoriumsExists(int id)
+        private bool CitiesExists(int id)
         {
-            return db.Auditoriums.Count(e => e.AuditoriumId == id) > 0;
+            return db.Cities.Count(e => e.CityId == id) > 0;
         }
     }
 }
