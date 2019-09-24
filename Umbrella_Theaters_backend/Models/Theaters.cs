@@ -26,6 +26,5 @@ namespace Umbrella_Theaters_backend.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Auditoriums> Auditoriums { get; set; }
-        public virtual Cities Cities { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Script.Serialization;
 using Umbrella_Theaters_backend.Models;
 
 namespace Umbrella_Theaters_backend.Controllers
@@ -17,9 +18,10 @@ namespace Umbrella_Theaters_backend.Controllers
         private UmbrellaTheatersEntities db = new UmbrellaTheatersEntities();
 
         // GET: api/Auditoriums
-        public IQueryable<Auditoriums> GetAuditoriums()
+        public string GetAuditoriums()
         {
-            return db.Auditoriums;
+            var json = new JavaScriptSerializer().Serialize(db.Auditoriums);
+            return json;
         }
 
         // GET: api/Auditoriums/5

@@ -25,7 +25,6 @@ namespace Umbrella_Theaters_backend.Models
         public string AuditoriumName { get; set; }
         public Nullable<int> TheatherId { get; set; }
     
-        public virtual Theaters Theaters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Screenings> Screenings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

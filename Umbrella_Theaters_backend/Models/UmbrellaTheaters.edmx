@@ -280,7 +280,6 @@
           <Property Name="AuditoriumId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AuditoriumName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TheatherId" Type="Int32" />
-          <NavigationProperty Name="Theaters" Relationship="Self.FK_Auditoriums_Theaters" FromRole="Auditoriums" ToRole="Theaters" />
           <NavigationProperty Name="Screenings" Relationship="Self.FK_Screenings_Auditoriums" FromRole="Auditoriums" ToRole="Screenings" />
           <NavigationProperty Name="Seats" Relationship="Self.FK_Seats_Auditoriums" FromRole="Auditoriums" ToRole="Seats" />
         </EntityType>
@@ -360,7 +359,6 @@
           <Property Name="TheaterName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CityId" Type="Int32" />
           <NavigationProperty Name="Auditoriums" Relationship="Self.FK_Auditoriums_Theaters" FromRole="Theaters" ToRole="Auditoriums" />
-          <NavigationProperty Name="Cities" Relationship="Self.FK_Theaters_Cities" FromRole="Theaters" ToRole="Cities" />
         </EntityType>
         <EntityType Name="UserGenre">
           <Key>
