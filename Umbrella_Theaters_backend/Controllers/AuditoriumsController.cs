@@ -26,15 +26,15 @@ namespace Umbrella_Theaters_backend.Controllers
 
         // GET: api/Auditoriums/5
         [ResponseType(typeof(Auditoriums))]
-        public IHttpActionResult GetAuditoriums(int id)
+        public string GetAuditoriums(int id)
         {
             Auditoriums auditoriums = db.Auditoriums.Find(id);
-            if (auditoriums == null)
-            {
-                return NotFound();
-            }
+            //if (auditoriums == null)
+            //{
+            //    return NotFound();
+            //}
 
-            return Ok(auditoriums);
+            return auditoriums.AuditoriumName;
         }
 
         // PUT: api/Auditoriums/5
