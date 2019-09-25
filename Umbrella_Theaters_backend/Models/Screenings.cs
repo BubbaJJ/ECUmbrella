@@ -28,7 +28,6 @@ namespace Umbrella_Theaters_backend.Models
         public int Price { get; set; }
         public string AddedByAdmin { get; set; }
     
-        public virtual Auditoriums Auditoriums { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bookings> Bookings { get; set; }
         public virtual Movies Movies { get; set; }

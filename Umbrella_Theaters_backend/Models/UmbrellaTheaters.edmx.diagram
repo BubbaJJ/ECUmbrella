@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4091d945e8ec48d3bceab07d60a255a7" Name="Diagram1">
+      <Diagram DiagramId="4091d945e8ec48d3bceab07d60a255a7" Name="Diagram1" ZoomLevel="98">
         <EntityTypeShape EntityType="UmbrellaTheatersModel.Auditoriums" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UmbrellaTheatersModel.Bookings" Width="1.5" PointX="9.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UmbrellaTheatersModel.Bookings" Width="1.5" PointX="10" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="UmbrellaTheatersModel.Cities" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="UmbrellaTheatersModel.Genres" Width="1.5" PointX="7.5" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UmbrellaTheatersModel.Genres" Width="1.5" PointX="7.125" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="UmbrellaTheatersModel.Movies" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="UmbrellaTheatersModel.Screenings" Width="1.5" PointX="7.5" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="UmbrellaTheatersModel.Seats" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UmbrellaTheatersModel.Seats" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="UmbrellaTheatersModel.Theaters" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="UmbrellaTheatersModel.UserGenre" Width="1.5" PointX="9.75" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="UmbrellaTheatersModel.Users" Width="1.5" PointX="7.5" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UmbrellaTheatersModel.UserGenre" Width="1.5" PointX="9.125" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UmbrellaTheatersModel.Users" Width="1.5" PointX="7.125" PointY="7" IsExpanded="true" />
         <AssociationConnector Association="UmbrellaTheatersModel.FK_Auditoriums_Theaters" ManuallyRouted="false" />
         <AssociationConnector Association="UmbrellaTheatersModel.FK_Screenings_Auditoriums" ManuallyRouted="false" />
         <AssociationConnector Association="UmbrellaTheatersModel.FK_Seats_Auditoriums" ManuallyRouted="false" />

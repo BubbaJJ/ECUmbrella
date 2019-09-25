@@ -14,19 +14,10 @@ namespace Umbrella_Theaters_backend.Models
     
     public partial class Movies
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Movies()
-        {
-            this.Screenings = new HashSet<Screenings>();
-        }
-    
         public int MovieId { get; set; }
         public string MovieName { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public Nullable<int> TmdbId { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Screenings> Screenings { get; set; }
     }
 }

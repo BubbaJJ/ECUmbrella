@@ -17,11 +17,8 @@ namespace Umbrella_Theaters_backend.Models
     {
         public UmbrellaTheatersEntities()
             : base("name=UmbrellaTheatersEntities")
-            {
-                
-                
-            }
-        
+        {
+        }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

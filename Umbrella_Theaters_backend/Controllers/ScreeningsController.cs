@@ -12,44 +12,44 @@ using Umbrella_Theaters_backend.Models;
 
 namespace Umbrella_Theaters_backend.Controllers
 {
-    public class Cities1Controller : ApiController
+    public class ScreeningsController : ApiController
     {
         private UmbrellaTheatersEntities db = new UmbrellaTheatersEntities();
 
-        // GET: api/Cities1
-        public IQueryable<Cities> GetCities()
+        // GET: api/Screenings
+        public IQueryable<Screenings> GetScreenings()
         {
-            return db.Cities;
+            return db.Screenings;
         }
 
-        // GET: api/Cities1/5
-        [ResponseType(typeof(Cities))]
-        public IHttpActionResult GetCities(int id)
+        // GET: api/Screenings/5
+        [ResponseType(typeof(Screenings))]
+        public IHttpActionResult GetScreenings(int id)
         {
-            Cities cities = db.Cities.Find(id);
-            if (cities == null)
+            Screenings screenings = db.Screenings.Find(id);
+            if (screenings == null)
             {
                 return NotFound();
             }
 
-            return Ok(cities);
+            return Ok(screenings);
         }
 
-        // PUT: api/Cities1/5
+        // PUT: api/Screenings/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCities(int id, Cities cities)
+        public IHttpActionResult PutScreenings(int id, Screenings screenings)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != cities.CityId)
+            if (id != screenings.ScreeningId)
             {
                 return BadRequest();
             }
 
-            db.Entry(cities).State = EntityState.Modified;
+            db.Entry(screenings).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Umbrella_Theaters_backend.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CitiesExists(id))
+                if (!ScreeningsExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace Umbrella_Theaters_backend.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Cities1
-        [ResponseType(typeof(Cities))]
-        public IHttpActionResult PostCities(Cities cities)
+        // POST: api/Screenings
+        [ResponseType(typeof(Screenings))]
+        public IHttpActionResult PostScreenings(Screenings screenings)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Cities.Add(cities);
+            db.Screenings.Add(screenings);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = cities.CityId }, cities);
+            return CreatedAtRoute("DefaultApi", new { id = screenings.ScreeningId }, screenings);
         }
 
-        // DELETE: api/Cities1/5
-        [ResponseType(typeof(Cities))]
-        public IHttpActionResult DeleteCities(int id)
+        // DELETE: api/Screenings/5
+        [ResponseType(typeof(Screenings))]
+        public IHttpActionResult DeleteScreenings(int id)
         {
-            Cities cities = db.Cities.Find(id);
-            if (cities == null)
+            Screenings screenings = db.Screenings.Find(id);
+            if (screenings == null)
             {
                 return NotFound();
             }
 
-            db.Cities.Remove(cities);
+            db.Screenings.Remove(screenings);
             db.SaveChanges();
 
-            return Ok(cities);
+            return Ok(screenings);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace Umbrella_Theaters_backend.Controllers
             base.Dispose(disposing);
         }
 
-        private bool CitiesExists(int id)
+        private bool ScreeningsExists(int id)
         {
-            return db.Cities.Count(e => e.CityId == id) > 0;
+            return db.Screenings.Count(e => e.ScreeningId == id) > 0;
         }
     }
 }
