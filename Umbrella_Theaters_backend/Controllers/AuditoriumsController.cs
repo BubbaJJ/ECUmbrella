@@ -22,11 +22,6 @@ namespace Umbrella_Theaters_backend.Controllers
         {
             return db.Auditoriums;
         }
-        //public string GetAuditoriums()
-        //{
-        //    var json = new JavaScriptSerializer().Serialize(db.Auditoriums);
-        //    return json;
-        //}
 
         // GET: api/Auditoriums/5
         [ResponseType(typeof(Auditoriums))]

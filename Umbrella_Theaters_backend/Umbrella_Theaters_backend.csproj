@@ -166,6 +166,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AuditoriumsController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
+    <Compile Include="Controllers\GetMovieController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ScreeningsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -184,9 +185,11 @@
     <Compile Include="Models\Genres.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Movies.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ResponseMovie.cs" />
     <Compile Include="Models\Screenings.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
@@ -196,6 +199,8 @@
     <Compile Include="Models\Theaters.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TmdbCon.cs" />
+    <Compile Include="Models\TmdbGenre.cs" />
     <Compile Include="Models\UmbrellaTheaters.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -1,0 +1,62 @@
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using Umbrella_Theaters_backend.Models;
+
+namespace Umbrella_Theaters_backend.Controllers
+{
+    public class GetMovieController : ApiController
+    {
+        // GET: api/GetMovie
+        public IEnumerable<string> GetMovie()
+        {
+            return new string[] { "value1", "value2" };
+        }
+
+        // GET: api/GetMovie/5
+        public Movie GetMovie(int id)
+        {
+            HttpWebRequest apiRequest = WebRequest.Create(TmdbCon.MovieUrl + id + TmdbCon.APIkey + TmdbCon.LangUS) as HttpWebRequest;
+            string ApiResponse = "";
+            using (HttpWebResponse response = apiRequest.GetResponse() as HttpWebResponse)
+            {
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+                ApiResponse = reader.ReadToEnd();
+            }
+            ResponseMovie ThisMovie = JsonConvert.DeserializeObject<ResponseMovie>(ApiResponse);
+            Movie Movie = new Movie();
+
+            Movie.MovieName = ThisMovie.original_title;
+            Movie.Id = ThisMovie.Id;
+            Movie.Runtime = ThisMovie.Runtime;
+            Movie.GenreName = ThisMovie.Genres;
+            Movie.PosterPath = ThisMovie.Poster_Path;
+            Movie.AdultMovie = ThisMovie.AdultMovie;
+            Movie.VoteAverage = ThisMovie.vote_average;
+            Movie.ReleaseDate = ThisMovie.release_date;
+            Movie.Overview = ThisMovie.Overview;
+
+            return Movie;
+        }
+
+        // POST: api/GetMovie
+        public void PostMovie([FromBody]string value)
+        {
+        }
+
+        // PUT: api/GetMovie/5
+        public void PutMovie(int id, [FromBody]string value)
+        {
+        }
+
+        // DELETE: api/GetMovie/5
+        public void DeleteMovie(int id)
+        {
+        }
+    }
+}
