@@ -15,7 +15,7 @@ namespace Umbrella_Theaters_backend.Models
         public string Poster_Path { get; set; }
         public string Overview { get; set; }
         public double vote_average { get; set; }
-        public List<TmdbGenre> Genres { get; set; }
+        public List<object> Genres { get; set; }
         public DateTime release_date { get; set; }
     }
 }

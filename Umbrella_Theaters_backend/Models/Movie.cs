@@ -12,7 +12,7 @@ namespace Umbrella_Theaters_backend.Models
         public int Id { get; set; }
         public int Runtime { get; set; }
         public bool AdultMovie { get; set; }
-        public List<TmdbGenre> GenreName { get; set; }
+        public List<object> GenreName { get; set; }
         public string PosterPath { get; set; }
         public double VoteAverage { get; set; }
         public DateTime ReleaseDate { get; set; }

@@ -169,6 +169,7 @@
     <Compile Include="Controllers\GetMovieController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ScreeningsController.cs" />
+    <Compile Include="Controllers\SearchMovieController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -190,9 +191,12 @@
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ResponseMovie.cs" />
+    <Compile Include="Models\ResponseSearchMovie.cs" />
+    <Compile Include="Models\ResultsMovie.cs" />
     <Compile Include="Models\Screenings.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SearchMovie.cs" />
     <Compile Include="Models\Seats.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
@@ -200,7 +204,7 @@
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TmdbCon.cs" />
-    <Compile Include="Models\TmdbGenre.cs" />
+    <Compile Include="Models\TmdbMovieResult.cs" />
     <Compile Include="Models\UmbrellaTheaters.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
