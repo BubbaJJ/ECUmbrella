@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 using Umbrella_Theaters_backend.Models;
 
 namespace Umbrella_Theaters_backend.Controllers
@@ -19,12 +20,16 @@ namespace Umbrella_Theaters_backend.Controllers
         }
 
         // GET: api/Booking/5
-        public Bookings Get(int id)
+        public IHttpActionResult Get(int id)
         {
             Bookings booking = db.Bookings.Find(id);
 
+            if (booking == null)
+            {
+                return BadRequest();
+            }
 
-            return booking;
+            return Ok(booking);
         }
 
         // POST: api/Booking

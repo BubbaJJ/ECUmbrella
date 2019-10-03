@@ -178,7 +178,6 @@
     <Compile Include="Models\Auditoriums.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Bookings.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
