@@ -499,7 +499,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="UmbrellaTheatersEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="UmbrellaTheatersEntities" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="Auditoriums" EntityType="Self.Auditoriums" />
           <EntitySet Name="Bookings" EntityType="Self.Bookings" />
           <EntitySet Name="Cities" EntityType="Self.Cities" />

@@ -18,6 +18,7 @@ namespace Umbrella_Theaters_backend.Models
         public UmbrellaTheatersEntities()
             : base("name=UmbrellaTheatersEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

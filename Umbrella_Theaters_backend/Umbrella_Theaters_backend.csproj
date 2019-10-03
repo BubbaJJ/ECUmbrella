@@ -165,6 +165,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AuditoriumsController.cs" />
+    <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\GetMovieController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="Models\Auditoriums.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Bookings.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
