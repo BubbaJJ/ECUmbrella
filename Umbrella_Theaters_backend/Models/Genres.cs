@@ -16,6 +16,7 @@ namespace Umbrella_Theaters_backend.Models
     {
         public int GenreId { get; set; }
         public string GenreName { get; set; }
+        public Nullable<int> TmdbGenreId { get; set; }
     
         public virtual UserGenre UserGenre { get; set; }
     }

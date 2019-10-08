@@ -184,6 +184,7 @@
     <Compile Include="Controllers\ScreeningsController.cs" />
     <Compile Include="Controllers\SearchMovieController.cs" />
     <Compile Include="Controllers\TheatersController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

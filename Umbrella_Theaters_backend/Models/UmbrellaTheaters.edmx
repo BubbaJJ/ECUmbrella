@@ -38,6 +38,7 @@
           </Key>
           <Property Name="GenreId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GenreName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TmdbGenreId" Type="int" />
         </EntityType>
         <EntityType Name="Movies">
           <Key>
@@ -48,6 +49,7 @@
           <Property Name="StartDate" Type="date" />
           <Property Name="EndDate" Type="date" />
           <Property Name="TmdbId" Type="int" />
+          <Property Name="Runtime" Type="int" />
         </EntityType>
         <EntityType Name="Screenings">
           <Key>
@@ -95,6 +97,7 @@
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Admin" Type="bit" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <Association Name="FK_Auditoriums_Theaters">
           <End Role="Theaters" Type="Self.Theaters" Multiplicity="0..1" />
@@ -312,6 +315,7 @@
           <Property Name="GenreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="GenreName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="UserGenre" Relationship="Self.FK_UserGenre_Genres" FromRole="Genres" ToRole="UserGenre" />
+          <Property Name="TmdbGenreId" Type="Int32" />
         </EntityType>
         <EntityType Name="Movies">
           <Key>
@@ -322,6 +326,7 @@
           <Property Name="StartDate" Type="DateTime" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Precision="0" />
           <Property Name="TmdbId" Type="Int32" />
+          <Property Name="Runtime" Type="Int32" />
         </EntityType>
         <EntityType Name="Screenings">
           <Key>
@@ -378,6 +383,7 @@
           <Property Name="Admin" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Bookings" Relationship="Self.FK_Bookings_Users" FromRole="Users" ToRole="Bookings" />
           <NavigationProperty Name="UserGenre" Relationship="Self.FK_UserGenre_Users" FromRole="Users" ToRole="UserGenre" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Auditoriums_Theaters">
           <End Role="Theaters" Type="Self.Theaters" Multiplicity="0..1" />
@@ -590,7 +596,8 @@
     <EntitySetMapping Name="Genres">
       <EntityTypeMapping TypeName="IsTypeOf(UmbrellaTheatersModel.Genres)">
         <MappingFragment StoreEntitySet="Genres">
-          <ScalarProperty Name="GenreId" ColumnName="GenreId" />
+          <ScalarProperty Name="TmdbGenreId" ColumnName="TmdbGenreId" />
+                <ScalarProperty Name="GenreId" ColumnName="GenreId" />
           <ScalarProperty Name="GenreName" ColumnName="GenreName" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -598,7 +605,8 @@
     <EntitySetMapping Name="Movies">
       <EntityTypeMapping TypeName="IsTypeOf(UmbrellaTheatersModel.Movies)">
         <MappingFragment StoreEntitySet="Movies">
-          <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+          <ScalarProperty Name="Runtime" ColumnName="Runtime" />
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
           <ScalarProperty Name="MovieName" ColumnName="MovieName" />
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
           <ScalarProperty Name="EndDate" ColumnName="EndDate" />
@@ -650,7 +658,8 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="IsTypeOf(UmbrellaTheatersModel.Users)">
         <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="Email" ColumnName="Email" />
