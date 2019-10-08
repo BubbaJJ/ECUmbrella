@@ -22,14 +22,14 @@ namespace Umbrella_Theaters_backend.Controllers
         // GET: api/Booking/5
         public IHttpActionResult Get(int id)
         {
-            Bookings booking = db.Bookings.Find(id);
-
-            if (booking == null)
+            try
+            {
+                return Ok(db.Bookings.Find(id));
+            } 
+            catch
             {
                 return BadRequest();
             }
-
-            return Ok(booking);
         }
 
         // POST: api/Booking
