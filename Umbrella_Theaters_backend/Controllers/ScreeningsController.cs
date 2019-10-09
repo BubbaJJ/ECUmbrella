@@ -7,19 +7,42 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using Umbrella_Theaters_backend.Models;
 
 namespace Umbrella_Theaters_backend.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ScreeningsController : ApiController
     {
         private UmbrellaTheatersEntities db = new UmbrellaTheatersEntities();
 
         // GET: api/Screenings
-        public IQueryable<Screenings> GetScreenings()
+        public List<ScreeningsTable> GetScreenings()
         {
-            return db.Screenings;
+            var screenings = db.Screenings;
+            var movieList = new List<ScreeningsTable>();
+
+            foreach (var screening in screenings)
+            {
+                var movieName = db.Movies.Where(x => x.MovieId == screening.MovieId).FirstOrDefault().MovieName;
+                var auditoriumName = db.Auditoriums.Where(x => x.AuditoriumId == screening.AuditoriumId).FirstOrDefault().AuditoriumName;
+                // var tMDBMovieInfo = _searchMovieController.Get(movieName);
+                movieList.Add(new ScreeningsTable
+                {
+                    Auditorium = auditoriumName,
+                    MovieName = movieName,
+                    Price = screening.Price,
+                    ScreeningId = screening.ScreeningId,
+                    StartTime = screening.StartTime,
+                    ViewingDate = screening.ViewingDate
+                });
+            }
+
+            return movieList;
+
+           // return db.Screenings;
         }
 
         // GET: api/Screenings/5

@@ -18,7 +18,7 @@ namespace Umbrella_Theaters_backend.Models
         public string MovieName { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
-        public Nullable<int> TmdbId { get; set; }
+        public int TmdbId { get; set; }
         public Nullable<int> Runtime { get; set; }
     }
 }
