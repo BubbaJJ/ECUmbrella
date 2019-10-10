@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Umbrella_Theaters_backend",
+    "\\Umbrella_Theaters_backend\\Controllers",
+    "\\Umbrella_Theaters_backend\\Models"
   ],
+  "SelectedNode": "\\Umbrella_Theaters_backend.sln",
   "PreviewInSolutionExplorer": false
 }

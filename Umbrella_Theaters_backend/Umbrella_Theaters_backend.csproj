@@ -260,6 +260,7 @@
     <Compile Include="Models\Genres.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ListOfMovies.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Movies.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>

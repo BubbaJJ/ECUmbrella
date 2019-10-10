@@ -1,28 +1,27 @@
-﻿using Microsoft.AspNetCore.Cors;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using Umbrella_Theaters_backend.Models;
 
 namespace Umbrella_Theaters_backend.Controllers
 {
-    // [EnableCors(origins: "*", headers: "*", methods: "*")]
+     [EnableCors(origins: "*", headers: "*", methods: "*")]
 
     public class MoviesController : ApiController
     {
         private UmbrellaTheatersEntities db = new UmbrellaTheatersEntities();
 
         // GET: api/Movies
-        public List<List<Movie>> GetListOfMovies()
+        public ListOfMovies GetListOfMovies()
         {
             var TMDBController = new GetMovieController();
             var currentMovies = db.Movies;
-            var listOfMovies = new List<List<Movie>>();
             var listOfUpcomingMovies = new List<Movie>();
             var listOfCurrentMovies = new List<Movie>();
 
@@ -38,10 +37,11 @@ namespace Umbrella_Theaters_backend.Controllers
                 }
             }
 
-            listOfMovies.Add(listOfCurrentMovies);
-            listOfMovies.Add(listOfUpcomingMovies);
-
-            return listOfMovies;
+            return new ListOfMovies
+            {
+                CurrentMovies = listOfCurrentMovies,
+                UpcomingMovies = listOfUpcomingMovies
+            };
         }
 
         // GET: api/Movies/5
