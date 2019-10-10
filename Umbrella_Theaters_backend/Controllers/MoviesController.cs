@@ -1,34 +1,45 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Cors;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using Umbrella_Theaters_backend.Models;
 
 namespace Umbrella_Theaters_backend.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    // [EnableCors(origins: "*", headers: "*", methods: "*")]
 
     public class MoviesController : ApiController
     {
         private UmbrellaTheatersEntities db = new UmbrellaTheatersEntities();
 
         // GET: api/Movies
-        public List<Movie> GetListOfMovies()
+        public List<List<Movie>> GetListOfMovies()
         {
             var TMDBController = new GetMovieController();
             var currentMovies = db.Movies;
-            var listOfMovies = new List<Movie>();
+            var listOfMovies = new List<List<Movie>>();
+            var listOfUpcomingMovies = new List<Movie>();
+            var listOfCurrentMovies = new List<Movie>();
+
             foreach (var movie in currentMovies)
             {
-                listOfMovies.Add(TMDBController.GetMovie(movie.TmdbId));
+                if (DateTime.Today >= movie.StartDate && DateTime.Today <= movie.EndDate)
+                {
+                    listOfCurrentMovies.Add(TMDBController.GetMovie(movie.TmdbId));
+                }
+                else if (DateTime.Today < movie.StartDate)
+                {
+                    listOfUpcomingMovies.Add(TMDBController.GetMovie(movie.TmdbId));
+                }
             }
+
+            listOfMovies.Add(listOfCurrentMovies);
+            listOfMovies.Add(listOfUpcomingMovies);
 
             return listOfMovies;
         }
