@@ -10,15 +10,10 @@
 namespace Umbrella_Theaters_backend.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Movies
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int MovieId { get; set; }
-        public string MovieName { get; set; }
-        public Nullable<System.DateTime> StartDate { get; set; }
-        public Nullable<System.DateTime> EndDate { get; set; }
-        public Nullable<int> TmdbId { get; set; }
-        public Nullable<int> Runtime { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

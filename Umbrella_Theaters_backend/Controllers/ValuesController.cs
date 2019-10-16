@@ -7,6 +7,7 @@ using System.Web.Http;
 
 namespace Umbrella_Theaters_backend.Controllers
 {
+    [Authentication]
     public class ValuesController : ApiController
     {
         // GET api/values

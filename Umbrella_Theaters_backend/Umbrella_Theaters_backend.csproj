@@ -234,6 +234,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Authentication.cs" />
     <Compile Include="Controllers\AuditoriumsController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
@@ -274,6 +275,12 @@
     <Compile Include="Models\ScreeningsTable.cs" />
     <Compile Include="Models\SearchMovie.cs" />
     <Compile Include="Models\Seats.cs">
+      <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Theaters.cs">

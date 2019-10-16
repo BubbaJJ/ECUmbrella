@@ -21,7 +21,7 @@ namespace Umbrella_Theaters_backend.Controllers
         }
 
         // GET: api/GetMovie/5
-        public Movie GetMovie(int id)
+        public Movie GetMovie(int? id) // utan allow null så blir det fel i anropet i MoviesController på raderna 32 & 36 efter att ha uppdaterat db modellen.
         {
             HttpWebRequest apiRequest = WebRequest.Create(TmdbCon.MovieUrl + id + TmdbCon.APIkey + TmdbCon.LangUS) as HttpWebRequest;
             string ApiResponse = "";

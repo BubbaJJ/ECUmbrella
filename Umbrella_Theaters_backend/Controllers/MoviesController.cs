@@ -29,11 +29,11 @@ namespace Umbrella_Theaters_backend.Controllers
             {
                 if (DateTime.Today >= movie.StartDate && DateTime.Today <= movie.EndDate)
                 {
-                    listOfCurrentMovies.Add(TMDBController.GetMovie(movie.TmdbId));
+                    listOfCurrentMovies.Add(TMDBController.GetMovie(movie.TmdbId)); //
                 }
                 else if (DateTime.Today < movie.StartDate)
                 {
-                    listOfUpcomingMovies.Add(TMDBController.GetMovie(movie.TmdbId));
+                    listOfUpcomingMovies.Add(TMDBController.GetMovie(movie.TmdbId)); //
                 }
             }
 
