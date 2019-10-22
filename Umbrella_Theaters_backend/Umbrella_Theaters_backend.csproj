@@ -281,6 +281,8 @@
     </Compile>
     <Compile Include="Models\TmdbCon.cs" />
     <Compile Include="Models\TmdbMovieResult.cs" />
+    <Compile Include="Models\IdAndTrailer.cs" />
+    <Compile Include="Models\Trailers.cs" />
     <Compile Include="Models\UmbrellaTheaters.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
