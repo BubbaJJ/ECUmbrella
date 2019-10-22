@@ -13,6 +13,8 @@ namespace Umbrella_Theaters_backend.Models
         public System.DateTime ViewingDate { get; set; }
         public System.TimeSpan StartTime { get; set; }
         public int Price { get; set; }
+        
+        public int NumberOfSeatsRemaining { get; set; }
 
         public virtual ICollection<Bookings> Bookings { get; set; }
     }

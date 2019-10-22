@@ -25,6 +25,9 @@ namespace Umbrella_Theaters_backend.Controllers
                 ApiResponse = reader.ReadToEnd();
             }
             ResponseSearchMovie ThisMovie = JsonConvert.DeserializeObject<ResponseSearchMovie>(ApiResponse);
+
+
+
             SearchMovie SearchMovie = new SearchMovie();
 
             SearchMovie.Page = ThisMovie.Page;
@@ -36,7 +39,7 @@ namespace Umbrella_Theaters_backend.Controllers
         }
 
         // GET: api/SearchMovie/5
-        public SearchMovie Get(string id)
+        public List<Movie> Get(string id)
         {
             HttpWebRequest apiRequest = WebRequest.Create(TmdbCon.SearchMovieUrl + TmdbCon.APIkey + TmdbCon.LangUS + "&query=" + id) as HttpWebRequest;
             string ApiResponse = "";
@@ -46,14 +49,31 @@ namespace Umbrella_Theaters_backend.Controllers
                 ApiResponse = reader.ReadToEnd();
             }
             ResponseSearchMovie ThisMovie = JsonConvert.DeserializeObject<ResponseSearchMovie>(ApiResponse);
-            SearchMovie SearchMovie = new SearchMovie();
 
-            SearchMovie.Page = ThisMovie.Page;
-            SearchMovie.TotalResults = ThisMovie.Total_results;
-            SearchMovie.TotalPages = ThisMovie.Total_pages;
-            SearchMovie.ListResults = ThisMovie.Results;
+            var searchResult = new List<Movie>();
 
-            return SearchMovie;
+            foreach (var movie in ThisMovie.Results)
+            {
+                searchResult.Add(new Movie
+                {
+                    Overview = movie.overview,
+                    Id = movie.id,
+                    PosterPath = movie.poster_path,
+                    MovieName = movie.title,
+                    VoteAverage = movie.vote_average
+                });
+            }
+
+            return searchResult.OrderByDescending(x => x.VoteAverage).ToList();
+
+            //SearchMovie SearchMovie = new SearchMovie();
+
+            //SearchMovie.Page = ThisMovie.Page;
+            //SearchMovie.TotalResults = ThisMovie.Total_results;
+            //SearchMovie.TotalPages = ThisMovie.Total_pages;
+            //SearchMovie.ListResults = ThisMovie.Results;
+
+            // return SearchMovie;
         }
 
         // POST: api/SearchMovie

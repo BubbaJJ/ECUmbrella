@@ -58,6 +58,7 @@ namespace Umbrella_Theaters_backend.Controllers
             }
             ResponseMovie ThisMovie = JsonConvert.DeserializeObject<ResponseMovie>(ApiResponse);
             Movie Movie = new Movie();
+            var trailers = GetTrailer("550");
 
             Movie.MovieName = ThisMovie.original_title;
             Movie.Id = ThisMovie.Id;
@@ -72,6 +73,22 @@ namespace Umbrella_Theaters_backend.Controllers
             Movie.StartDate = startdate;
 
             return Movie;
+        }
+
+        [Route("thisisit")]
+        public IdAndTrailer GetTrailer(string id)
+        {
+            HttpWebRequest apiRequest = WebRequest.Create(TmdbCon.MovieUrl + id + "/videos" + TmdbCon.APIkey + TmdbCon.LangUS) as HttpWebRequest;
+
+            string ApiResponse = "";
+            using (HttpWebResponse response = apiRequest.GetResponse() as HttpWebResponse)
+            {
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+                ApiResponse = reader.ReadToEnd();
+            }
+            IdAndTrailer trailers = JsonConvert.DeserializeObject<IdAndTrailer>(ApiResponse);
+
+            return trailers;
         }
 
         // POST: api/GetMovie

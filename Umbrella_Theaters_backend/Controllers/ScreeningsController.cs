@@ -28,7 +28,9 @@ namespace Umbrella_Theaters_backend.Controllers
             {
                 var movieName = db.Movies.Where(x => x.MovieId == screening.MovieId).FirstOrDefault().MovieName;
                 var auditoriumName = db.Auditoriums.Where(x => x.AuditoriumId == screening.AuditoriumId).FirstOrDefault().AuditoriumName;
-                // var tMDBMovieInfo = _searchMovieController.Get(movieName);
+                var bookings = db.Bookings.Where(x => x.ScreeningId == screening.ScreeningId).ToList().Count();
+                var seats = db.Seats.Where(x => x.AuditoriumId == screening.AuditoriumId).ToList().Count();
+                var numberOfSeatsRemaining = seats - bookings;
                 movieList.Add(new ScreeningsTable
                 {
                     Auditorium = auditoriumName,
@@ -36,9 +38,12 @@ namespace Umbrella_Theaters_backend.Controllers
                     Price = screening.Price,
                     ScreeningId = screening.ScreeningId,
                     StartTime = screening.StartTime,
-                    ViewingDate = screening.ViewingDate
+                    ViewingDate = screening.ViewingDate,
+                    NumberOfSeatsRemaining = numberOfSeatsRemaining
                 });
             }
+
+            movieList.OrderBy(x => x.ViewingDate).OrderBy(t => t.StartTime);
 
             return movieList;
 
