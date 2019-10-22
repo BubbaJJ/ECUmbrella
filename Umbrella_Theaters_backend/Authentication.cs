@@ -27,13 +27,21 @@ namespace Umbrella_Theaters_backend
                 string userName = decodedToken.Substring(0, decodedToken.IndexOf(":"));
                 string userPassword = decodedToken.Substring(decodedToken.IndexOf(":") + 1);
 
- 
 
-                if (userName == "henrik" && userPassword == "kesella") // userName == "Henrik" && userPassword == "2bilar"
+                var userId = 0;
+
+                try
                 {
-                    // Nu blev vi authoriserade! :D
+                    userId = db.Users.Where(un => un.Email == userName)
+                    .Where(pw => pw.Password == userPassword)
+                    .FirstOrDefault().UserId;
                 }
-                else
+                catch
+                {
+                    userId = -1;
+                }
+ 
+                if (userId < 1)
                 {
                     actionContext.Response = new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
                 }
