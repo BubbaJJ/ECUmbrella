@@ -68,6 +68,7 @@ namespace Umbrella_Theaters_backend.Controllers
             Movie.VoteAverage = ThisMovie.vote_average;
             Movie.ReleaseDate = ThisMovie.release_date;
             Movie.Overview = ThisMovie.Overview;
+            Movie.BackdropPath = ThisMovie.backdrop_path;
             Movie.StartDate = startdate;
 
             return Movie;
