@@ -19,5 +19,6 @@ namespace Umbrella_Theaters_backend.Models
         public string Overview { get; set; }
         public DateTime StartDate { get; set; }
         public string BackdropPath { get; set; }
+        public string TrailerPath { get; set; }
     }
 }
