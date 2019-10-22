@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Umbrella_Theaters_backend.Models;
 
 namespace Umbrella_Theaters_backend.Controllers
 {
@@ -12,10 +15,16 @@ namespace Umbrella_Theaters_backend.Controllers
     [Authentication]
     public class ValuesController : ApiController
     {
+        private UmbrellaTheatersEntities db = new UmbrellaTheatersEntities();
         // GET api/values
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            string userIdString = Thread.CurrentPrincipal.Identity.Name;
+            int userId = Convert.ToInt32(userIdString);
+
+            string userFirstName = db.Users.Find(userId).FirstName;
+
+            return new string[] { "value1", "value2", userFirstName, userId.ToString() };
         }
 
         // GET api/values/5

@@ -6,6 +6,8 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using System.Text;
 using Umbrella_Theaters_backend.Models;
+using System.Threading;
+using System.Security.Principal;
 
 namespace Umbrella_Theaters_backend
 {
@@ -27,7 +29,7 @@ namespace Umbrella_Theaters_backend
                 string userName = decodedToken.Substring(0, decodedToken.IndexOf(":"));
                 string userPassword = decodedToken.Substring(decodedToken.IndexOf(":") + 1);
 
-
+                string firstName = null;
                 var userId = 0;
 
                 try
@@ -35,16 +37,25 @@ namespace Umbrella_Theaters_backend
                     userId = db.Users.Where(un => un.Email == userName)
                     .Where(pw => pw.Password == userPassword)
                     .FirstOrDefault().UserId;
+                    firstName = db.Users.Find(userId).FirstName;
                 }
                 catch
                 {
                     userId = -1;
                 }
- 
-                if (userId < 1)
+
+                if (userId > 0)
+                {
+                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(userId.ToString()), null);
+                }
+                else
                 {
                     actionContext.Response = new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
                 }
+
+
+
+
             }
         }
 
