@@ -20,7 +20,6 @@ namespace Umbrella_Theaters_backend.Models
         public UmbrellaTheatersEntities()
             : base("name=UmbrellaTheatersEntities")
         {
-            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -38,6 +37,7 @@ namespace Umbrella_Theaters_backend.Models
         public virtual DbSet<Theaters> Theaters { get; set; }
         public virtual DbSet<UserGenre> UserGenre { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     
         public virtual ObjectResult<Nullable<int>> spAuthenticateUser(string email, string password)
         {

@@ -284,6 +284,9 @@
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Theaters.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
@@ -306,6 +309,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UmbrellaTheaters.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserBookings.cs" />
     <Compile Include="Models\UserGenre.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>

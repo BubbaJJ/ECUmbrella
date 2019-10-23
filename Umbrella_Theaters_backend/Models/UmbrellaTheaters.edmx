@@ -45,10 +45,10 @@
             <PropertyRef Name="MovieId" />
           </Key>
           <Property Name="MovieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MovieName" Type="nvarchar" MaxLength="200" />
-          <Property Name="StartDate" Type="date" />
-          <Property Name="EndDate" Type="date" />
-          <Property Name="TmdbId" Type="int" />
+          <Property Name="MovieName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="TmdbId" Type="int" Nullable="false" />
           <Property Name="Runtime" Type="int" />
         </EntityType>
         <EntityType Name="Screenings">
@@ -71,6 +71,16 @@
           <Property Name="Row" Type="int" />
           <Property Name="SeatNumber" Type="int" />
           <Property Name="AuditoriumId" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Theaters">
           <Key>
@@ -266,6 +276,7 @@
           <EntitySet Name="Movies" EntityType="Self.Movies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Screenings" EntityType="Self.Screenings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Seats" EntityType="Self.Seats" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Theaters" EntityType="Self.Theaters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserGenre" EntityType="Self.UserGenre" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -361,10 +372,10 @@
             <PropertyRef Name="MovieId" />
           </Key>
           <Property Name="MovieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MovieName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="StartDate" Type="DateTime" Precision="0" />
-          <Property Name="EndDate" Type="DateTime" Precision="0" />
-          <Property Name="TmdbId" Type="Int32" />
+          <Property Name="MovieName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="TmdbId" Type="Int32" Nullable="false" />
           <Property Name="Runtime" Type="Int32" />
         </EntityType>
         <EntityType Name="Screenings">
@@ -544,7 +555,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="UmbrellaTheatersEntities" annotation:LazyLoadingEnabled="false">
+        <EntityContainer Name="UmbrellaTheatersEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Auditoriums" EntityType="Self.Auditoriums" />
           <EntitySet Name="Bookings" EntityType="Self.Bookings" />
           <EntitySet Name="Cities" EntityType="Self.Cities" />
@@ -633,6 +644,7 @@
             <Parameter Name="username" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="sysdiagrams" EntityType="UmbrellaTheatersModel.sysdiagrams" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -645,6 +657,16 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -781,6 +803,17 @@
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="UmbrellaTheatersModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="UmbrellaTheatersModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="spAuthUserLogon" FunctionName="UmbrellaTheatersModel.Store.spAuthUserLogon" />
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="UmbrellaTheatersModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

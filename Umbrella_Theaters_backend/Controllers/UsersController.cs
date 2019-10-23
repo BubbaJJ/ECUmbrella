@@ -7,11 +7,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using Umbrella_Theaters_backend.Models;
 
 namespace Umbrella_Theaters_backend.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+
     public class UsersController : ApiController
     {
         private UmbrellaTheatersEntities db = new UmbrellaTheatersEntities();
@@ -74,6 +77,10 @@ namespace Umbrella_Theaters_backend.Controllers
         [ResponseType(typeof(Users))]
         public IHttpActionResult PostUsers(Users users)
         {
+            if (db.Users.Where(x => x.Email.Equals(users.Email)).Any())
+            {
+                return BadRequest("User email already exists");
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

@@ -8,9 +8,12 @@ using System.Text;
 using Umbrella_Theaters_backend.Models;
 using System.Threading;
 using System.Security.Principal;
+using System.Web.Http.Cors;
 
 namespace Umbrella_Theaters_backend
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+
     public class Authentication : ActionFilterAttribute
     {
         public override void OnActionExecuting(HttpActionContext actionContext)
@@ -46,7 +49,7 @@ namespace Umbrella_Theaters_backend
 
                 if (userId > 0)
                 {
-                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(userId.ToString()), null);
+                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(userName), null);
                 }
                 else
                 {

@@ -26,7 +26,7 @@ namespace Umbrella_Theaters_backend.Controllers
             }
             ResponseSearchMovie ThisMovie = JsonConvert.DeserializeObject<ResponseSearchMovie>(ApiResponse);
 
-
+            var getMovieController = new GetMovieController();
 
             SearchMovie SearchMovie = new SearchMovie();
 
