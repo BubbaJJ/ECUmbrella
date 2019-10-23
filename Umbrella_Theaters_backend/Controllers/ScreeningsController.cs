@@ -23,10 +23,12 @@ namespace Umbrella_Theaters_backend.Controllers
         {
             var screenings = db.Screenings;
             var movieList = new List<ScreeningsTable>();
-
+            var _getMovieController = new GetMovieController();
             foreach (var screening in screenings)
             {
-                var movieName = db.Movies.Where(x => x.MovieId == screening.MovieId).FirstOrDefault().MovieName;
+                var movieInfo = db.Movies.Where(x => x.MovieId == screening.MovieId).FirstOrDefault();
+                var movieName = movieInfo.MovieName;
+                var movie = _getMovieController.GetMovie(movieInfo.TmdbId);
                 var auditoriumName = db.Auditoriums.Where(x => x.AuditoriumId == screening.AuditoriumId).FirstOrDefault().AuditoriumName;
                 var bookings = db.Bookings.Where(x => x.ScreeningId == screening.ScreeningId).ToList().Count();
                 var seats = db.Seats.Where(x => x.AuditoriumId == screening.AuditoriumId).ToList().Count();
@@ -39,7 +41,10 @@ namespace Umbrella_Theaters_backend.Controllers
                     ScreeningId = screening.ScreeningId,
                     StartTime = screening.StartTime,
                     ViewingDate = screening.ViewingDate,
-                    NumberOfSeatsRemaining = numberOfSeatsRemaining
+                    NumberOfSeatsRemaining = numberOfSeatsRemaining,
+                    PosterPath = movie.PosterPath,
+                    Overview = movie.Overview
+
                 });
             }
 

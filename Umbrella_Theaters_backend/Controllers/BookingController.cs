@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -11,21 +12,28 @@ using Umbrella_Theaters_backend.Models;
 
 namespace Umbrella_Theaters_backend.Controllers
 {
-    [Authentication]
+    
     [EnableCors(origins: "*", headers: "*", methods: "*")]
 
     public class BookingController : ApiController
     {
         private UmbrellaTheatersEntities db = new UmbrellaTheatersEntities();
-
+        [Authentication]
         // GET: api/Booking
         public List<UserBookings> Get()
         {
             string userName = Thread.CurrentPrincipal.Identity.Name;
             var user = db.Users.Where(x => x.Email == userName).FirstOrDefault();
+            var dbListOfBookingsByEmail = db.Bookings.Where(x => x.Email == user.Email).ToList();
             var dbListOfUserBookings = db.Bookings.Where(x => x.BookedById == user.UserId).ToList();
+            
+            foreach (var movieBooking in dbListOfBookingsByEmail)
+            {
+                if (!dbListOfUserBookings.Contains(movieBooking))
+                dbListOfUserBookings.Add(movieBooking);
+            }
 
-            var _getMovieController = new GetMovieController();
+                var _getMovieController = new GetMovieController();
 
             var userBookings = new List<UserBookings>();
 
@@ -64,8 +72,17 @@ namespace Umbrella_Theaters_backend.Controllers
         }
 
         // POST: api/Booking
-        public void Post([FromBody]string value)
+        public IHttpActionResult Post([FromBody]Bookings request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Bookings.Add(request);
+            db.SaveChanges();
+
+            return Ok();
         }
 
         // PUT: api/Booking/5

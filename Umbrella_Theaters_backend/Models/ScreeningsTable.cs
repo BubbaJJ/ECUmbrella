@@ -15,7 +15,8 @@ namespace Umbrella_Theaters_backend.Models
         public int Price { get; set; }
         
         public int NumberOfSeatsRemaining { get; set; }
-
+        public string PosterPath { get; set; }
+        public string Overview { get; set; }
         public virtual ICollection<Bookings> Bookings { get; set; }
     }
 }
