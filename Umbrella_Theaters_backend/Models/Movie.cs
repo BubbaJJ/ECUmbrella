@@ -17,5 +17,8 @@ namespace Umbrella_Theaters_backend.Models
         public double VoteAverage { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string Overview { get; set; }
+        public DateTime StartDate { get; set; }
+        public string BackdropPath { get; set; }
+        public string TrailerPath { get; set; }
     }
 }
