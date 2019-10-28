@@ -15,10 +15,12 @@ namespace Umbrella_Theaters_backend.Models
         public List<object> GenreName { get; set; }
         public string PosterPath { get; set; }
         public double VoteAverage { get; set; }
-        public DateTime ReleaseDate { get; set; }
+        public DateTime? ReleaseDate { get; set; }
         public string Overview { get; set; }
         public DateTime StartDate { get; set; }
         public string BackdropPath { get; set; }
         public string TrailerPath { get; set; }
+        public int TotalResults { get; set; }
+        public int TotalPages { get; set; }
     }
 }
