@@ -337,7 +337,6 @@
       <DependentUpon>UmbrellaTheaters.edmx</DependentUpon>
       <LastGenOutput>UmbrellaTheaters.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\UmbrellaTheaters.edmx.sql" />
     <Content Include="Models\UmbrellaTheaters.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>UmbrellaTheaters.edmx</DependentUpon>
