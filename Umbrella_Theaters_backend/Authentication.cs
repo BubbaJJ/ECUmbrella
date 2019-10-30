@@ -49,7 +49,7 @@ namespace Umbrella_Theaters_backend
 
                 if (userId > 0)
                 {
-                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(userName), null);
+                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(db.Users.Find(userId).Email), null);
                 }
                 else
                 {
