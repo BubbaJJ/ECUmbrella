@@ -260,6 +260,9 @@
     <Compile Include="Models\Cities.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\database_firewall_rules.cs">
+      <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Genres.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>

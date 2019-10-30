@@ -26,6 +26,7 @@
         <AssociationConnector Association="UmbrellaTheatersModel.FK_Screenings_Movies" ManuallyRouted="false" />
         <AssociationConnector Association="UmbrellaTheatersModel.FK_UserGenre_Users" ManuallyRouted="false" />
         <EntityTypeShape EntityType="UmbrellaTheatersModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="UmbrellaTheatersModel.database_firewall_rules" Width="1.5" PointX="0.75" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -38,6 +38,7 @@ namespace Umbrella_Theaters_backend.Models
         public virtual DbSet<UserGenre> UserGenre { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
     
         public virtual ObjectResult<Nullable<int>> spAuthenticateUser(string email, string password)
         {
