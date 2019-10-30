@@ -256,6 +256,7 @@
     <Compile Include="Models\Bookings.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BookTicketsRequest.cs" />
     <Compile Include="Models\Cities.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
@@ -312,7 +313,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UmbrellaTheaters.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserBookings.cs" />
+    <Compile Include="Models\UserTicket.cs" />
     <Compile Include="Models\UserGenre.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
@@ -336,7 +337,6 @@
       <DependentUpon>UmbrellaTheaters.edmx</DependentUpon>
       <LastGenOutput>UmbrellaTheaters.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\UmbrellaTheaters.edmx.sql" />
     <Content Include="Models\UmbrellaTheaters.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>UmbrellaTheaters.edmx</DependentUpon>
