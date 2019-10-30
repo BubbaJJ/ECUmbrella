@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Umbrella_Theaters_backend",
+    "\\Umbrella_Theaters_backend\\Controllers"
   ],
+  "SelectedNode": "\\Umbrella_Theaters_backend\\Controllers\\MuppController.cs",
   "PreviewInSolutionExplorer": false
 }
