@@ -51,7 +51,6 @@ namespace Umbrella_Theaters_backend.Controllers
                     Paid = booking.Paid,
                     ScreeningId = booking.ScreeningId,
                     SeatId = booking.SeatId,
-                    State = booking.State
                 });
             }
 

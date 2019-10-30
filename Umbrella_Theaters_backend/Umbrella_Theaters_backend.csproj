@@ -245,6 +245,7 @@
     <Compile Include="Controllers\ScreeningsController.cs" />
     <Compile Include="Controllers\SearchMovieController.cs" />
     <Compile Include="Controllers\TheatersController.cs" />
+    <Compile Include="Controllers\TotalResultsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -275,6 +276,7 @@
     </Compile>
     <Compile Include="Models\ScreeningsTable.cs" />
     <Compile Include="Models\SearchMovie.cs" />
+    <Compile Include="Models\SearchMoviePaged.cs" />
     <Compile Include="Models\Seats.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>

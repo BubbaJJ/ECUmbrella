@@ -19,6 +19,5 @@ namespace Umbrella_Theaters_backend.Models
         public System.DateTime StartDate { get; set; }
         public System.DateTime EndDate { get; set; }
         public int TmdbId { get; set; }
-        public Nullable<int> Runtime { get; set; }
     }
 }

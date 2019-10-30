@@ -37,7 +37,7 @@ namespace Umbrella_Theaters_backend.Controllers
         }
 
         // GET: api/SearchMovie/5
-        public List<Movie> Get(string id)
+        public SearchMoviePaged Get(string id)
         {
             HttpWebRequest apiRequest = WebRequest.Create(TmdbCon.SearchMovieUrl + TmdbCon.APIkey + TmdbCon.LangUS + "&query=" + id) as HttpWebRequest;
             string ApiResponse = "";
@@ -60,15 +60,19 @@ namespace Umbrella_Theaters_backend.Controllers
                     MovieName = movie.title,
                     VoteAverage = movie.vote_average,
                     ReleaseDate = movie.release_date,
-                    TotalResults = ThisMovie.Total_results,
-                    TotalPages = ThisMovie.Total_pages
                 });
             }
 
-            return searchResult.OrderByDescending(x => x.VoteAverage).ToList();
+            var returnValues = new SearchMoviePaged();
+            returnValues.TotalResults = ThisMovie.Total_results;
+            returnValues.TotalPages = ThisMovie.Total_pages;
+            returnValues.Page = ThisMovie.Page;
+            returnValues.Movies = searchResult;
+
+            return returnValues;
         }
         [Route("api/SearchMovie/{id}/{page}")]
-        public List<Movie> Get(string id, int page) //Special för uppdatering av modal.
+        public SearchMoviePaged Get(string id, int page) //Special för uppdatering av modal.
         {
             HttpWebRequest apiRequest = WebRequest.Create(TmdbCon.SearchMovieUrl + TmdbCon.APIkey + TmdbCon.LangUS + "&query=" + id + "&page=" + page) as HttpWebRequest;
             string ApiResponse = "";
@@ -90,13 +94,17 @@ namespace Umbrella_Theaters_backend.Controllers
                     PosterPath = movie.poster_path,
                     MovieName = movie.title,
                     VoteAverage = movie.vote_average,
-                    ReleaseDate = movie.release_date,
-                    TotalResults = ThisMovie.Total_results,
-                    TotalPages = ThisMovie.Total_pages
+                    ReleaseDate = movie.release_date
                 });
             }
 
-            return searchResult.OrderByDescending(x => x.VoteAverage).ToList();
+            var returnValues = new SearchMoviePaged();
+            returnValues.TotalResults = ThisMovie.Total_results;
+            returnValues.TotalPages = ThisMovie.Total_pages;
+            returnValues.Movies = searchResult;
+            returnValues.Page = ThisMovie.Page;
+
+            return returnValues;
         }
 
         // POST: api/SearchMovie

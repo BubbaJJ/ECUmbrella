@@ -20,7 +20,6 @@ namespace Umbrella_Theaters_backend.Models
         public Nullable<int> BookedById { get; set; }
         public string Email { get; set; }
         public bool Paid { get; set; }
-        public int State { get; set; }
     
         public virtual Screenings Screenings { get; set; }
         public virtual Seats Seats { get; set; }

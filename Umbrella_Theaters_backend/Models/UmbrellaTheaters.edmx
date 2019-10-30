@@ -23,7 +23,6 @@
           <Property Name="BookedById" Type="int" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Paid" Type="bit" Nullable="false" />
-          <Property Name="State" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Cities">
           <Key>
@@ -49,7 +48,6 @@
           <Property Name="StartDate" Type="date" Nullable="false" />
           <Property Name="EndDate" Type="date" Nullable="false" />
           <Property Name="TmdbId" Type="int" Nullable="false" />
-          <Property Name="Runtime" Type="int" />
         </EntityType>
         <EntityType Name="Screenings">
           <Key>
@@ -345,7 +343,6 @@
           <Property Name="BookedById" Type="Int32" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Paid" Type="Boolean" Nullable="false" />
-          <Property Name="State" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Screenings" Relationship="Self.FK_Bookings_Screenings" FromRole="Bookings" ToRole="Screenings" />
           <NavigationProperty Name="Seats" Relationship="Self.FK_Bookings_Seats" FromRole="Bookings" ToRole="Seats" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Bookings_Users" FromRole="Bookings" ToRole="Users" />
@@ -376,7 +373,6 @@
           <Property Name="StartDate" Type="DateTime" Precision="0" Nullable="false" />
           <Property Name="EndDate" Type="DateTime" Precision="0" Nullable="false" />
           <Property Name="TmdbId" Type="Int32" Nullable="false" />
-          <Property Name="Runtime" Type="Int32" />
         </EntityType>
         <EntityType Name="Screenings">
           <Key>
@@ -691,7 +687,6 @@
           <ScalarProperty Name="BookedById" ColumnName="BookedById" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Paid" ColumnName="Paid" />
-          <ScalarProperty Name="State" ColumnName="State" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -715,7 +710,6 @@
     <EntitySetMapping Name="Movies">
       <EntityTypeMapping TypeName="IsTypeOf(UmbrellaTheatersModel.Movies)">
         <MappingFragment StoreEntitySet="Movies">
-          <ScalarProperty Name="Runtime" ColumnName="Runtime" />
                 <ScalarProperty Name="MovieId" ColumnName="MovieId" />
           <ScalarProperty Name="MovieName" ColumnName="MovieName" />
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
