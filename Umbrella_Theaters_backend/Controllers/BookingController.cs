@@ -12,7 +12,7 @@ using Umbrella_Theaters_backend.Models;
 
 namespace Umbrella_Theaters_backend.Controllers
 {
-    
+
     [EnableCors(origins: "*", headers: "*", methods: "*")]
 
     public class BookingController : ApiController
@@ -20,42 +20,63 @@ namespace Umbrella_Theaters_backend.Controllers
         private UmbrellaTheatersEntities db = new UmbrellaTheatersEntities();
         [Authentication]
         // GET: api/Booking
-        public List<UserBookings> Get()
+        public List<UserTicket> Get()
         {
+            var _getMovieController = new GetMovieController();
+
             string userName = Thread.CurrentPrincipal.Identity.Name;
             var user = db.Users.Where(x => x.Email == userName).FirstOrDefault();
             var dbListOfBookingsByEmail = db.Bookings.Where(x => x.Email == user.Email).ToList();
-            var dbListOfUserBookings = db.Bookings.Where(x => x.BookedById == user.UserId).ToList();
-            
-            foreach (var movieBooking in dbListOfBookingsByEmail)
+            var screenings = dbListOfBookingsByEmail.Select(x => x.ScreeningId).Distinct().ToList();
+
+            var listOfScreenings = new List<UserTicket>();
+            foreach (var screening in screenings)
             {
-                if (!dbListOfUserBookings.Contains(movieBooking))
-                dbListOfUserBookings.Add(movieBooking);
-            }
-
-                var _getMovieController = new GetMovieController();
-
-            var userBookings = new List<UserBookings>();
-
-            foreach (var booking in dbListOfUserBookings)
-            {
-                var movie = db.Screenings.Where(x => x.ScreeningId == booking.ScreeningId).FirstOrDefault().MovieId;
-                var tmdbMovieId = db.Movies.Where(x => x.MovieId == movie).FirstOrDefault().TmdbId;
-
+                var movie = db.Screenings.Where(x => x.ScreeningId == screening).FirstOrDefault();
+                var tmdbMovieId = db.Movies.Where(x => x.MovieId == movie.MovieId).FirstOrDefault().TmdbId;
                 var tmdbMovie = _getMovieController.GetMovie(tmdbMovieId);
-                userBookings.Add(new UserBookings
+                listOfScreenings.Add(new UserTicket
                 {
+                    ScreeningId = screening,
                     PosterPath = tmdbMovie.PosterPath,
                     MovieName = tmdbMovie.MovieName,
-                    BookingId = booking.BookingId,
-                    Paid = booking.Paid,
-                    ScreeningId = booking.ScreeningId,
-                    SeatId = booking.SeatId,
-                    State = booking.State
+                    ViewingDate = movie.ViewingDate,
+                    StartTime = movie.StartTime,
+                    AuditoriumId = movie.AuditoriumId,
+                    NumberOfTickets = dbListOfBookingsByEmail.Where(x => x.ScreeningId == screening).Count()
                 });
             }
+            return listOfScreenings;
 
-             return userBookings;
+            //var listretur = new List<List<UserTicket>>();
+            //foreach (var screening in screenings)
+            //{
+            //    var movie = db.Screenings.Where(x => x.ScreeningId == screening).FirstOrDefault();
+            //    var tmdbMovieId = db.Movies.Where(x => x.MovieId == movie.MovieId).FirstOrDefault().TmdbId;
+            //    var tmdbMovie = _getMovieController.GetMovie(tmdbMovieId);
+
+            //    var userTickets = new List<UserTicket>();
+            //    foreach (var booking in dbListOfBookingsByEmail)
+            //    {
+            //        if (booking.ScreeningId == screening)
+            //        {
+            //            userTickets.Add(new UserTicket
+            //            {
+            //                PosterPath = tmdbMovie.PosterPath,
+            //                MovieName = tmdbMovie.MovieName,
+            //                BookingId = booking.BookingId,
+            //                Paid = booking.Paid,
+            //                ScreeningId = booking.ScreeningId,
+            //                SeatId = booking.SeatId,
+            //                ViewingDate = movie.ViewingDate,
+            //                StartTime = movie.StartTime,
+            //                AuditoriumId = movie.AuditoriumId
+            //            });
+            //        }
+            //    }
+            //    listretur.Add(userTickets);
+            //}
+            //return listretur;
         }
 
         // GET: api/Booking/5
@@ -64,7 +85,7 @@ namespace Umbrella_Theaters_backend.Controllers
             try
             {
                 return Ok(db.Bookings.Find(id));
-            } 
+            }
             catch
             {
                 return BadRequest();
@@ -72,19 +93,43 @@ namespace Umbrella_Theaters_backend.Controllers
         }
 
         // POST: api/Booking
-        public IHttpActionResult Post([FromBody]Bookings request)
+        public IHttpActionResult Post([FromBody]BookTicketsRequest request)
         {
-            if (!ModelState.IsValid)
+            var listOfTickets = new List<Bookings>();
+            var seatStartNumber = db.Bookings.Where(x => x.ScreeningId == request.ScreeningId).ToList().OrderByDescending(o => o.SeatId);
+            var listOfSeatsBooked = seatStartNumber.Select(x => x.SeatId).ToList();
+            int seat = listOfSeatsBooked.FirstOrDefault() + 1;
+            for (int i = 1; i <= request.NumberOfTickets; i++)
             {
-                return BadRequest(ModelState);
+
+                listOfTickets.Add(new Bookings
+                {
+                    BookedById = request.BookedById,
+                    Email = request.Email,
+                    Paid = request.Paid,
+                    ScreeningId = request.ScreeningId,
+                    SeatId = seat
+                });
+                //}
+                seat += 1;
+
+                //if (!ModelState.IsValid)
+                //{
+                //    return BadRequest(ModelState);
+                //}
+
+
+            }
+            foreach (var ticketBooking in listOfTickets)
+            {
+                db.Bookings.Add(ticketBooking);
             }
 
-            db.Bookings.Add(request);
+
             db.SaveChanges();
 
             return Ok();
         }
-
         // PUT: api/Booking/5
         public void Put(int id, [FromBody]string value)
         {
