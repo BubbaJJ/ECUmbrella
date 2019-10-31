@@ -315,6 +315,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UmbrellaTheaters.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserDto.cs" />
     <Compile Include="Models\UserTicket.cs" />
     <Compile Include="Models\UserGenre.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>

@@ -12,7 +12,7 @@ using Umbrella_Theaters_backend.Models;
 namespace Umbrella_Theaters_backend.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [Authentication]
+    [Authentication(true)]
     public class ValuesController : ApiController
     {
         private UmbrellaTheatersEntities db = new UmbrellaTheatersEntities();

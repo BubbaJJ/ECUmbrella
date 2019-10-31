@@ -16,6 +16,14 @@ namespace Umbrella_Theaters_backend
 
     public class Authentication : ActionFilterAttribute
     {
+        private bool isAdmin;
+        public Authentication(bool admin)
+        {
+            if (admin)
+            {
+                isAdmin = admin;
+            }
+        }
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
             UmbrellaTheatersEntities db = new UmbrellaTheatersEntities();
@@ -49,16 +57,23 @@ namespace Umbrella_Theaters_backend
 
                 if (userId > 0)
                 {
-                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(db.Users.Find(userId).Email), null);
+                    if (isAdmin)
+                    {
+                        if (db.Users.Find(userId).Admin)
+                        {
+                            Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(userId.ToString()), null);
+                        }
+                        actionContext.Response = new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
+                    }
+                    else
+                    {
+                        Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(userId.ToString()), null);
+                    }
                 }
                 else
                 {
                     actionContext.Response = new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
                 }
-
-
-
-
             }
         }
 
