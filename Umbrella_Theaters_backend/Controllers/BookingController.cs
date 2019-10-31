@@ -18,14 +18,13 @@ namespace Umbrella_Theaters_backend.Controllers
     public class BookingController : ApiController
     {
         private UmbrellaTheatersEntities db = new UmbrellaTheatersEntities();
-        [Authentication]
+        [Authentication(false)]
         // GET: api/Booking
         public List<UserTicket> Get()
         {
             var _getMovieController = new GetMovieController();
 
-            string userName = Thread.CurrentPrincipal.Identity.Name;
-            var user = db.Users.Where(x => x.Email == userName).FirstOrDefault();
+            var user = db.Users.Find(Convert.ToInt32(Thread.CurrentPrincipal.Identity.Name));
             var dbListOfBookingsByEmail = db.Bookings.Where(x => x.Email == user.Email).ToList();
             var screenings = dbListOfBookingsByEmail.Select(x => x.ScreeningId).Distinct().ToList();
 

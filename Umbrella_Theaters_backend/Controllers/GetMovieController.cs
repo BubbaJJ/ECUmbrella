@@ -32,7 +32,6 @@ namespace Umbrella_Theaters_backend.Controllers
             }
             ResponseMovie ThisMovie = JsonConvert.DeserializeObject<ResponseMovie>(ApiResponse);
             Movie Movie = new Movie();
-            var trailers = GetTrailer("550");
 
             Movie.MovieName = ThisMovie.original_title;
             Movie.Id = ThisMovie.Id;
@@ -43,7 +42,6 @@ namespace Umbrella_Theaters_backend.Controllers
             Movie.VoteAverage = ThisMovie.vote_average;
             Movie.ReleaseDate = ThisMovie.release_date;
             Movie.Overview = ThisMovie.Overview;
-            Movie.TrailerPath = trailers.Results[0].Key;
 
             return Movie;
         }
@@ -60,7 +58,6 @@ namespace Umbrella_Theaters_backend.Controllers
             }
             ResponseMovie ThisMovie = JsonConvert.DeserializeObject<ResponseMovie>(ApiResponse);
             Movie Movie = new Movie();
-            var trailers = GetTrailer("550");
 
             Movie.MovieName = ThisMovie.original_title;
             Movie.Id = ThisMovie.Id;
@@ -73,7 +70,6 @@ namespace Umbrella_Theaters_backend.Controllers
             Movie.Overview = ThisMovie.Overview;
             Movie.BackdropPath = ThisMovie.backdrop_path;
             Movie.StartDate = startdate;
-            Movie.TrailerPath = trailers.Results[0].Key;
 
             return Movie;
         }

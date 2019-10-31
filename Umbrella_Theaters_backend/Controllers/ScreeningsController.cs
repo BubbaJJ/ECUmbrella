@@ -20,7 +20,7 @@ namespace Umbrella_Theaters_backend.Controllers
         // GET: api/Screenings
         public List<ScreeningsTable> GetScreenings()
         {
-            var screenings = db.Screenings;
+            var screenings = db.Screenings.Where(x => x.ViewingDate >= DateTime.UtcNow);
             var movieList = new List<ScreeningsTable>();
             var _getMovieController = new GetMovieController();
             foreach (var screening in screenings)
@@ -47,9 +47,9 @@ namespace Umbrella_Theaters_backend.Controllers
                 });
             }
 
-            movieList.OrderBy(x => x.ViewingDate).OrderBy(t => t.StartTime);
+           var sortedListToReturn =  movieList.OrderBy(x => x.ViewingDate).ToList();
 
-            return movieList;
+            return sortedListToReturn;
 
            // return db.Screenings;
         }
