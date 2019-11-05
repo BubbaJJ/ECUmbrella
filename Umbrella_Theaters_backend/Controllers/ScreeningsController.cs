@@ -38,7 +38,7 @@ namespace Umbrella_Theaters_backend.Controllers
                     MovieName = movieName,
                     Price = screening.Price,
                     ScreeningId = screening.ScreeningId,
-                    StartTime = screening.StartTime,
+                    StartTime = screening.StartTime.ToString().Substring(0, 5),
                     ViewingDate = screening.ViewingDate,
                     NumberOfSeatsRemaining = numberOfSeatsRemaining,
                     PosterPath = movie.PosterPath,
@@ -46,12 +46,9 @@ namespace Umbrella_Theaters_backend.Controllers
 
                 });
             }
-
-           var sortedListToReturn =  movieList.OrderBy(x => x.ViewingDate).ToList();
+            var sortedListToReturn = movieList.OrderBy(x => x.ViewingDate).ToList();
 
             return sortedListToReturn;
-
-           // return db.Screenings;
         }
 
         // GET: api/Screenings/5

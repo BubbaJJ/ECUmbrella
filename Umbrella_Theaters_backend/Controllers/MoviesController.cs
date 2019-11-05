@@ -36,6 +36,14 @@ namespace Umbrella_Theaters_backend.Controllers
                     listOfUpcomingMovies.Add(TMDBController.GetMovie(movie.TmdbId, movie.StartDate)); //
                 }
             }
+            foreach (var movie in listOfCurrentMovies)
+            {
+                movie.DbMovieId = currentMovies.Where(x => x.TmdbId == movie.Id).Select(t => t.MovieId).FirstOrDefault();
+            }
+            foreach (var movie in listOfUpcomingMovies)
+            {
+                movie.DbMovieId = currentMovies.Where(x => x.TmdbId == movie.Id).Select(t => t.MovieId).FirstOrDefault();
+            }
 
             return new ListOfMovies
             {
