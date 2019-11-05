@@ -7,12 +7,15 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using System.Web.Script.Serialization;
 using Umbrella_Theaters_backend.Models;
 
 namespace Umbrella_Theaters_backend.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+
     public class AuditoriumsController : ApiController
     {
         private UmbrellaTheatersEntities db = new UmbrellaTheatersEntities();
