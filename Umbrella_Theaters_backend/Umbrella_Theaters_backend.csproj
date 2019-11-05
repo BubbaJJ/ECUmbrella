@@ -251,6 +251,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AuditoriumNameAndIdDto.cs" />
     <Compile Include="Models\Auditoriums.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
