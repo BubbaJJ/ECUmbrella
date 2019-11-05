@@ -18,9 +18,11 @@ namespace Umbrella_Theaters_backend.Controllers
         private UmbrellaTheatersEntities db = new UmbrellaTheatersEntities();
 
         // GET: api/Auditoriums
-        public IQueryable<Auditoriums> GetAuditoriums()
+        public List<AuditoriumNameAndIdDto> GetAuditoriums()
         {
-            return db.Auditoriums;
+            var listOfAuditoriums = db.Auditoriums.Select(x => new AuditoriumNameAndIdDto { AuditoriumId=  x.AuditoriumId, AuditoriumName =  x.AuditoriumName }).ToList();
+
+            return listOfAuditoriums;
         }
 
         // GET: api/Auditoriums/5
