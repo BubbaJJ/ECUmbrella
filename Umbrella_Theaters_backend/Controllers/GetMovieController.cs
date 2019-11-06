@@ -74,10 +74,10 @@ namespace Umbrella_Theaters_backend.Controllers
             return Movie;
         }
 
-        [Route("gettrailer")]
-        public IdAndTrailer GetTrailer()
+        [Route("gettrailer/{id}")]
+        public IdAndTrailer GetTrailer(int id)
         {
-            HttpWebRequest apiRequest = WebRequest.Create(TmdbCon.MovieUrl + 550 + "/videos" + TmdbCon.APIkey + TmdbCon.LangUS) as HttpWebRequest;
+            HttpWebRequest apiRequest = WebRequest.Create(TmdbCon.MovieUrl + id + "/videos" + TmdbCon.APIkey + TmdbCon.LangUS) as HttpWebRequest;
 
             string ApiResponse = "";
             using (HttpWebResponse response = apiRequest.GetResponse() as HttpWebResponse)
