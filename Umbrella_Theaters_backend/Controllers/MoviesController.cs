@@ -12,7 +12,7 @@ using Umbrella_Theaters_backend.Models;
 namespace Umbrella_Theaters_backend.Controllers
 {
      [EnableCors(origins: "*", headers: "*", methods: "*")]
-
+     //this is a change
     public class MoviesController : ApiController
     {
         private UmbrellaTheatersEntities db = new UmbrellaTheatersEntities();
@@ -35,6 +35,14 @@ namespace Umbrella_Theaters_backend.Controllers
                 {
                     listOfUpcomingMovies.Add(TMDBController.GetMovie(movie.TmdbId, movie.StartDate)); //
                 }
+            }
+            foreach (var movie in listOfCurrentMovies)
+            {
+                movie.DbMovieId = currentMovies.Where(x => x.TmdbId == movie.Id).Select(t => t.MovieId).FirstOrDefault();
+            }
+            foreach (var movie in listOfUpcomingMovies)
+            {
+                movie.DbMovieId = currentMovies.Where(x => x.TmdbId == movie.Id).Select(t => t.MovieId).FirstOrDefault();
             }
 
             return new ListOfMovies

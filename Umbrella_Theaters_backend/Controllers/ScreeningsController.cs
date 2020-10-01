@@ -5,7 +5,6 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
@@ -21,7 +20,7 @@ namespace Umbrella_Theaters_backend.Controllers
         // GET: api/Screenings
         public List<ScreeningsTable> GetScreenings()
         {
-            var screenings = db.Screenings;
+            var screenings = db.Screenings.Where(x => x.ViewingDate >= DateTime.UtcNow);
             var movieList = new List<ScreeningsTable>();
             var _getMovieController = new GetMovieController();
             foreach (var screening in screenings)
@@ -39,7 +38,7 @@ namespace Umbrella_Theaters_backend.Controllers
                     MovieName = movieName,
                     Price = screening.Price,
                     ScreeningId = screening.ScreeningId,
-                    StartTime = screening.StartTime,
+                    StartTime = screening.StartTime.ToString().Substring(0, 5),
                     ViewingDate = screening.ViewingDate,
                     NumberOfSeatsRemaining = numberOfSeatsRemaining,
                     PosterPath = movie.PosterPath,
@@ -47,12 +46,9 @@ namespace Umbrella_Theaters_backend.Controllers
 
                 });
             }
+            var sortedListToReturn = movieList.OrderBy(x => x.ViewingDate).ToList();
 
-            movieList.OrderBy(x => x.ViewingDate).OrderBy(t => t.StartTime);
-
-            return movieList;
-
-           // return db.Screenings;
+            return sortedListToReturn;
         }
 
         // GET: api/Screenings/5

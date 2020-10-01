@@ -251,13 +251,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AuditoriumNameAndIdDto.cs" />
     <Compile Include="Models\Auditoriums.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Bookings.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BookTicketsRequest.cs" />
     <Compile Include="Models\Cities.cs">
+      <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\database_firewall_rules.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Genres.cs">
@@ -311,7 +316,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UmbrellaTheaters.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserBookings.cs" />
+    <Compile Include="Models\UserDto.cs" />
+    <Compile Include="Models\UserTicket.cs" />
     <Compile Include="Models\UserGenre.cs">
       <DependentUpon>UmbrellaTheaters.tt</DependentUpon>
     </Compile>
@@ -335,7 +341,6 @@
       <DependentUpon>UmbrellaTheaters.edmx</DependentUpon>
       <LastGenOutput>UmbrellaTheaters.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\UmbrellaTheaters.edmx.sql" />
     <Content Include="Models\UmbrellaTheaters.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>UmbrellaTheaters.edmx</DependentUpon>

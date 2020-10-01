@@ -12,19 +12,16 @@ using Umbrella_Theaters_backend.Models;
 namespace Umbrella_Theaters_backend.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [Authentication]
+    [Authentication(true)]
     public class ValuesController : ApiController
     {
         private UmbrellaTheatersEntities db = new UmbrellaTheatersEntities();
         // GET api/values
-        public IEnumerable<string> Get()
+        public bool Get()
         {
             string userIdString = Thread.CurrentPrincipal.Identity.Name;
-            int userId = Convert.ToInt32(userIdString);
 
-            string userFirstName = db.Users.Find(userId).FirstName;
-
-            return new string[] { "value1", "value2", userFirstName, userId.ToString() };
+            return true;
         }
 
         // GET api/values/5
